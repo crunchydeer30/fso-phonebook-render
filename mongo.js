@@ -8,7 +8,7 @@ if (numArgs < 3) {
 } else if (numArgs > 5) {
   console.log('too many arguments');
   process.exit(1);
-} else if (numArgs == 4) {
+} else if (numArgs === 4) {
   console.log('number is missing');
   process.exit(1);
 }
@@ -28,10 +28,10 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model('Person', personSchema);
 
-if (numArgs == 3) {
+if (numArgs === 3) {
   console.log('phonebook: ');
   Person.find({}).then((persons) => {
-    if (persons.length == 0) {
+    if (persons.length === 0) {
       console.log('empty');
     } else {
       persons.forEach((person) => {

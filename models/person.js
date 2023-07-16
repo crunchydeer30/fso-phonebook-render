@@ -16,8 +16,23 @@ mongoose
   });
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+  name: {
+    type: String,
+    minLength: 3,
+    required: true,
+  },
+  number: {
+    type: String,
+    minLength: 8,
+    required: true,
+
+    validate: {
+      validator: function (v) {
+        return /^\d{2,3}-\d+$/.test(v);
+      },
+      message: 'Number is not valid. Number should be formed of two parts that are separated by '-', the first part has two or three numbers and the second part also consists of numbers',
+    },
+  },
 });
 
 personSchema.set('toJSON', {
